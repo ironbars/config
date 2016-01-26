@@ -1,0 +1,184 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, dont do anything
+# If so, enhance tab completion
+[[ $- != *i* ]] && return
+
+# Shell behavior variables
+# ----------------------------------------------------------------------------
+shopt -s cdspell
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s dotglob
+shopt -s expand_aliases
+shopt -s extglob
+shopt -s histappend
+shopt -s hostcomplete
+shopt -s nocaseglob
+
+# Environment variables
+# ----------------------------------------------------------------------------
+export HISTSIZE=10000
+export HISTFILESIZE={HISTSIZE}
+export HISTCONTROL=ignoreboth
+export EDITOR=vim
+export PATH=$PATH:$HOME/bin
+
+# Aliases
+# ----------------------------------------------------------------------------
+alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias la='ls -a --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias grep='grep --color=tty -d skip'
+alias cp='cp -i'
+alias df='df -h'
+alias free='free -m'
+alias bashrc='vim ~/.bashrc'
+alias vimrc='vim ~/.vimrc'
+alias cls='clear'
+alias add='sudo pacman -S'
+alias remove='sudo pacman -Rsn'
+alias off='poweroff'
+alias start='sudo systemctl start'
+alias restart='sudo systemctl restart'
+alias stop='sudo systemctl stop'
+alias enable='sudo systemctl enable'
+alias disable='sudo systemctl disable'
+
+# Functions
+# ----------------------------------------------------------------------------
+# ex - archive extractor
+# usage: ex <archive>
+ex ()
+{
+	if [ -f $1 ]; then
+		case $1 in
+			*.tar.bz2)	tar xjf $1;;
+			*.tar.gz)	tar xzf $1;;
+			*.bz2)		bunzip2 $1;;
+			*.rar)		unrar x $1;;
+			*.gz)		gunzip $1;;
+			*.tar)		tar xf $1;;
+			*.tbz2)		tar xjf $1;;
+			*.tgz)		tar xzf $1;;
+			*.zip)		unzip $1;;
+			*.Z)		uncompress $1;;
+			*.7z)		7z x $1;;
+			*)			echo "'$1' cannot be extracted via ex()";;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
+
+# csource - compile and execute C source on the fly
+# usage: csource <source_file>
+csource ()
+{
+	if [ -z "$1" ]; then
+		echo "Missing operand";
+		return 1;
+	fi
+	local OUTPUT_PATH=$(echo "$1" | sed -e "s/^.*\/\|^/\/tmp\//" | sed -e "s/\.c$//");
+	gcc "$1" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
+	rm "$OUTPUT_PATH";
+	return 0;
+}
+
+# cpp - compile and execute C++ source on the fly
+# usage: cpp <source_file>
+cpp ()
+{
+	if [ -z "$1" ]; then 
+		echo "Missing operand";
+		return 1;
+	fi
+	local OUTPUT_PATH=$(echo "$1" | sed -e "s/^.*\/\|^/\/tmp\//" | sed -e "s/\.cpp$//");
+	g++ "$1" -o "$OUTPUT_PATH" && "$OUTPUT_PATH";
+	rm "$OUTPUT_PATH";
+	return 0;
+}
+
+# cl - cd and ls in one command
+# usage: cl <directory>
+cl ()
+{
+	DIR=$1
+	if [[ -z "$DIR" ]]; then
+		DIR=$HOME
+	fi
+	if [[ -d "$DIR" ]]; then
+		cd "$DIR"
+		ls
+	else
+		echo "bash: cl: '$DIR': Directory not found"
+	fi
+}
+
+# note - a simple note taker
+# usage: note [option] | <note_string>
+note ()
+{
+	if [[ ! -f $HOME/.notes ]]; then
+		touch $HOME/.notes
+	fi
+
+	if [[ $# -eq 0 ]]; then
+		cat $HOME/.notes
+	elif [[ "$1" == "-c" ]]; then
+		echo "" > $HOME/.notes
+	else
+		echo "$@" >> $HOME/.notes
+	fi
+}
+
+# todo - a simple task utility
+# usage: todo [option] | <task_string>
+todo ()
+{
+	if [[ ! -f $HOME/.todo ]]; then
+		touch $HOME/.todo
+	fi
+
+	if [[ $# -eq 0 ]]; then
+		cat -n $HOME/.todo
+	elif [[ "$1" == "-c" ]]; then
+		echo "" > $HOME/.todo
+	elif [[ "$1" == "-r" ]]; then
+		echo -ne "----------------------------------------\nType a number to remove: "
+		read NUMBER
+		sed -ie ${NUMBER}d $HOME/.todo
+	else
+		echo "$@" >> $HOME/.todo
+	fi
+}
+
+# bak - backup updated config files
+# usage bak <file_name>
+bak ()
+{
+	if [[ -z "$1" ]]; then
+		echo "bash: bak: Missing operand"
+	elif [[ ! -f "$1" ]]; then
+		echo "bash: bak: File not found"
+	else
+		BAK_DIR=$HOME/sys/doc
+		cp "$1" "$BAK_DIR"
+		local NEW_FILE=$(echo "$1" | sed -e "s/^\.//" | sed -e "s/\'/\.bak/")
+		mv "$BAK_DIR"/"$1" "$BAK_DIR"/"$NEW_FILE"
+	fi
+}
+
+# Misc.
+# ----------------------------------------------------------------------------
+# Prompt
+PS1='\[\e[0;36m\][\u@\h \W]\$\[\e[0m\] '
+
+# Turn on 256 color support
+if [ "x$TERM" == "xxterm" ]; then
+	export TERM="xterm-256color"
+fi
+
+archey3
