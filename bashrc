@@ -37,7 +37,10 @@ alias df='df -h'
 alias free='free -m'
 alias bashrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
-alias cls='clear'
+alias cls='echo "Use Ctrl+L!!!"'
+
+# Arch specific
+# -------------
 alias add='sudo pacman -S'
 alias remove='sudo pacman -Rsn'
 alias off='poweroff'
@@ -46,6 +49,18 @@ alias restart='sudo systemctl restart'
 alias stop='sudo systemctl stop'
 alias enable='sudo systemctl enable'
 alias disable='sudo systemctl disable'
+
+# Mac specific
+# ------------
+#alias add='brew install'
+#alias remove='brew uninstall'
+
+# Void specific
+# -------------
+#alias add='sudo xbps-install -S'
+#alias remove='sudo xbps-remove -R'
+#alias search='xbps-query -R -s'
+
 
 # Functions
 # ----------------------------------------------------------------------------
