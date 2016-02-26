@@ -39,7 +39,7 @@ alias bashrc='vim ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 alias cls='echo "Use Ctrl+L!!!"'
 
-# Arch specific
+# Arch (Antergos) specific
 # -------------
 alias add='sudo pacman -S'
 alias remove='sudo pacman -Rsn'
@@ -60,6 +60,7 @@ alias disable='sudo systemctl disable'
 #alias add='sudo xbps-install -S'
 #alias remove='sudo xbps-remove -R'
 #alias search='xbps-query -R -s'
+#alias off='sudo poweroff'
 
 
 # Functions
