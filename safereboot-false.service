@@ -1,0 +1,13 @@
+[Unit]
+Description=Safereboot Check
+After=basic.target
+AssertPathExists=!/etc/nhc/safe-shutdown
+OnFailure=safereboot-true.service
+
+[Service]
+ExecStart=/usr/bin/systemd-tmpfiles --create /etc/systemd/system/safereboot.conf
+Type=oneshot
+RemainAfterExit=false
+
+[Install]
+WantedBy=multi-user.target

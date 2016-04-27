@@ -1,0 +1,12 @@
+[Unit]
+Description=Safereboot Check True
+After=safereboot-false.service
+Wants=safereboot-false.service
+
+[Service]
+ExecStart=/usr/bin/rm -f /etc/nhc/safe-shutdown
+Type=oneshot
+RemainAfterExit=false
+
+[Install]
+WantedBy=multi-user.target
