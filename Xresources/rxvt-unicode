@@ -1,5 +1,8 @@
 URxvt*foreground: White
 URxvt*background: Black
+URxvt*background: rgba: 0000/0000/0000/0000
+URxvt*depth: 32
+
 
 URxvt*font: xft:terminus:pixelsize:9
 !URxvt*font: xft:Dina:pixelsize:10

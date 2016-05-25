@@ -1,2 +1,2 @@
 #include ".config/Xresources/rxvt-unicode"
-
+#include ".config/Xresources/rofi"

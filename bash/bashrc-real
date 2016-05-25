@@ -29,15 +29,19 @@ export INPUTRC=$HOME/.config/bash/inputrc
 
 # Aliases
 # ----------------------------------------------------------------------------
-alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias la='ls -a --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+#alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+#alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+#alias la='ls -a --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ls='ls --group-directories-first --time-style=long-iso --color=auto -F'
+alias ll='ls -lh --group-directories-first --time-style=long-iso --color=auto -F'
+alias la='ls -a --group-directories-first --time-style=long-iso --color=auto -F'
 alias grep='grep --color=tty -d skip'
 alias cp='cp -i'
 alias df='df -h'
-alias free='free -m'
-alias bashrc='vim ~/.config/bash/bashrc'
+alias free='free -h'
+alias bashrc='vim ~/.config/bash/bashrc-real'
 alias vimrc='vim ~/.config/vim/vimrc'
+alias sb='source ~/.config/bash/bashrc-real'
 alias cls='echo "Use Ctrl+L!!!"'
 
 # Arch (Antergos) specific
@@ -126,7 +130,7 @@ cl ()
 	if [[ -z "$DIR" ]]; then
 		DIR=$HOME
 	fi
-	if [[ -d "$DIR" ]]; then
+	if [[ -d "$DIR" || "$DIR" == "-" ]]; then
 		cd "$DIR"
 		ls
 	else
@@ -191,7 +195,7 @@ bak ()
 # Misc.
 # ----------------------------------------------------------------------------
 # Prompt
-PS1='\[\e[0;36m\][\u@\h \W]\$\[\e[0m\] '
+PS1='\[\e[1;36m\][\u@\h \W]\$\[\e[0m\] '
 
 # Turn on 256 color support
 if [ "x$TERM" == "xxterm" ]; then
