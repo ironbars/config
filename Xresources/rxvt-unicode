@@ -1,13 +1,12 @@
-URxvt*foreground: White
+URxvt*foreground: rgb:b0/ff/ff
 URxvt*background: Black
-URxvt*background: rgba: 0000/0000/0000/0000
-URxvt*depth: 32
+URxvt*transparent: true
+URxvt*shading: 50
 
 
-URxvt*font: xft:terminus:pixelsize:9
+URxvt*font: xft:terminus:size=9
 !URxvt*font: xft:Dina:pixelsize:10
 !URxvt*font: xft:montecarlo:pixelsize:12
 
 URxvt*ScrollTtyKeypress: true
 URxvt*scrollBar: false
-

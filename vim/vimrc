@@ -18,7 +18,8 @@ else
 	"colorscheme brookstream
 	"colorscheme stingray
 	"colorscheme maroloccio3
-	colorscheme solarized
+	"colorscheme solarized
+	colorscheme tron
 	"colorscheme nefertiti
 	"colorscheme mustang
 endif
