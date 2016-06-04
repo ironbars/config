@@ -1,4 +1,6 @@
 #!/bin/bash
 
-feh --bg-scale $HOME/digital-rain.png
+feh --bg-scale $HOME/.wallpaper
 mpd
+dunst &
+dropbox &
