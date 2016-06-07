@@ -1,0 +1,9 @@
+nitrogen --restore &
+volumeicon &
+compton --config ~/.config/compton.conf --shadow-exclude 'n:a:Conky' -b &
+tint2 &
+#plank &
+dropbox &
+conky &
+xautolock -time 15 -locker "systemctl suspend" &
+#/usr/lib/lxpolkit/lxpolkit &
