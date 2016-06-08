@@ -1,11 +1,16 @@
 [general]
-fontname=Terminus 10
+fontname=Terminus 9
 selchars=-A-Za-z0-9,./?%&#:_
 scrollback=1000
+# For solarized colorscheme in terminal
+# -------------------------------------
+#bgalpha=65535
 #bgcolor=#00002b2b3636
+#fgcolor=#65657b7b8383
+# -------------------------------------
+bgalpha=32896
 bgcolor=#000000000000
-bgalpha=65535
-fgcolor=#65657b7b8383
+fgcolor=#ffffffffffff
 disallowbold=false
 cursorblinks=false
 cursorunderline=false
