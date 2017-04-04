@@ -11,7 +11,8 @@ set number
 set background=dark
 set t_Co=256
 if !has('gui_running')
-	colorscheme tir_black
+	"colorscheme tir_black
+	colorscheme apprentice
 else
 	"colorscheme ir_dark
 	"colorscheme pablo
