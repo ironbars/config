@@ -4,7 +4,7 @@ URxvt*transparent: true
 URxvt*shading: 50
 
 
-URxvt*font: xft:terminus:size=9
+URxvt*font: xft:xos4 Terminus:size=9
 !URxvt*font: xft:Dina:pixelsize:10
 !URxvt*font: xft:montecarlo:pixelsize:12
 

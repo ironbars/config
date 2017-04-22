@@ -1,5 +1,5 @@
 rofi.color-enabled: true
-rofi.font: Terminus 10
+rofi.font: xos4 Terminus 10
 rofi.lines: 5
 rofi.modi: Drun,run,window
 rofi.hide-scrollbar:true

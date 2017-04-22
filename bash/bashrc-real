@@ -30,12 +30,8 @@ export LS_COLORS=$LS_COLORS:'di=0;35:'
 
 # Aliases
 # ----------------------------------------------------------------------------
-#alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-#alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-#alias la='ls -a --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ls='ls --group-directories-first --time-style=long-iso --color=auto -F'
 alias ll='ls -lh --group-directories-first --time-style=long-iso --color=auto -F'
-#alias la='ls -a --group-directories-first --time-style=long-iso --color=auto -F'
 alias la='ls -a --group-directories-first --time-style=long-iso -F'
 alias grep='grep --color=tty -d skip'
 alias cp='cp -i'
@@ -178,22 +174,6 @@ todo ()
 	fi
 }
 
-# bak - backup updated config files
-# usage bak <file_name>
-bak ()
-{
-	if [[ -z "$1" ]]; then
-		echo "bash: bak: Missing operand"
-	elif [[ ! -f "$1" ]]; then
-		echo "bash: bak: File not found"
-	else
-		BAK_DIR=$HOME/sys/doc
-		cp "$1" "$BAK_DIR"
-		local NEW_FILE=$(echo "$1" | sed -e "s/^\.//" | sed -e "s/\'/\.bak/")
-		mv "$BAK_DIR"/"$1" "$BAK_DIR"/"$NEW_FILE"
-	fi
-}
-
 # Misc.
 # ----------------------------------------------------------------------------
 # Prompt
@@ -205,5 +185,4 @@ if [ "x$TERM" == "xxterm" ]; then
 	export TERM="xterm-256color"
 fi
 
-#archey3
-screenfetch
+archey3
